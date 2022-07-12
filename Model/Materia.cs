@@ -21,5 +21,19 @@ namespace GestaoCompetencias.Models
         public virtual Turma? Turma { get; set; }
         public virtual ICollection<Competencia> Competencia { get; set; }
         public virtual ICollection<MateriaProfessor> MateriaProfessores { get; set; }
+
+        public int save()
+        {
+            int id = 0;
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                context.Materias.Add(this);
+                context.SaveChanges();
+                id = this.Id;
+            }
+            return id;
+        }
+
     }
+
 }
