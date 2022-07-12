@@ -16,15 +16,15 @@ namespace GestaoCompetencias.Models
         {
         }
 
-        public virtual DbSet<Aprendiz> Aprendizs { get; set; } = null!;
+        public virtual DbSet<Aprendiz> Aprendizes { get; set; } = null!;
         public virtual DbSet<AprendizCompetencia> AprendizCompetencias { get; set; } = null!;
         public virtual DbSet<Competencia> Competencias { get; set; } = null!;
         public virtual DbSet<Login> Logins { get; set; } = null!;
-        public virtual DbSet<MateriaProfessor> MateriaProfessors { get; set; } = null!;
-        public virtual DbSet<Materia> Materia { get; set; } = null!;
-        public virtual DbSet<Professor> Professors { get; set; } = null!;
+        public virtual DbSet<MateriaProfessor> MateriaProfessores { get; set; } = null!;
+        public virtual DbSet<Materia> Materias { get; set; } = null!;
+        public virtual DbSet<Professor> Professores { get; set; } = null!;
         public virtual DbSet<Turma> Turmas { get; set; } = null!;
-        public virtual DbSet<TurmaProfessor> TurmaProfessors { get; set; } = null!;
+        public virtual DbSet<TurmaProfessor> TurmaProfessores { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -58,12 +58,12 @@ namespace GestaoCompetencias.Models
                 entity.Property(e => e.TurmaId).HasColumnName("TurmaID");
 
                 entity.HasOne(d => d.Login)
-                    .WithMany(p => p.Aprendizs)
+                    .WithMany(p => p.Aprendizes)
                     .HasForeignKey(d => d.LoginId)
                     .HasConstraintName("FK__Aprendiz__LoginI__286302EC");
 
                 entity.HasOne(d => d.Turma)
-                    .WithMany(p => p.Aprendizs)
+                    .WithMany(p => p.Aprendizes)
                     .HasForeignKey(d => d.TurmaId)
                     .HasConstraintName("FK__Aprendiz__TurmaI__29572725");
             });
@@ -81,12 +81,12 @@ namespace GestaoCompetencias.Models
                 entity.Property(e => e.CompetenciasId).HasColumnName("CompetenciasID");
 
                 entity.HasOne(d => d.Aprendiz)
-                    .WithMany(p => p.AprendizCompetencia)
+                    .WithMany(p => p.AprendizCompetencias)
                     .HasForeignKey(d => d.AprendizId)
                     .HasConstraintName("FK__Aprendiz___Apren__38996AB5");
 
                 entity.HasOne(d => d.Competencias)
-                    .WithMany(p => p.AprendizCompetencia)
+                    .WithMany(p => p.AprendizCompetencias)
                     .HasForeignKey(d => d.CompetenciasId)
                     .HasConstraintName("FK__Aprendiz___Compe__398D8EEE");
             });
@@ -139,12 +139,12 @@ namespace GestaoCompetencias.Models
                 entity.Property(e => e.ProfessorId).HasColumnName("ProfessorID");
 
                 entity.HasOne(d => d.Materia)
-                    .WithMany(p => p.MateriaProfessors)
+                    .WithMany(p => p.MateriaProfessores)
                     .HasForeignKey(d => d.MateriaId)
                     .HasConstraintName("FK__Materia_P__Mater__3D5E1FD2");
 
                 entity.HasOne(d => d.Professor)
-                    .WithMany(p => p.MateriaProfessors)
+                    .WithMany(p => p.MateriaProfessores)
                     .HasForeignKey(d => d.ProfessorId)
                     .HasConstraintName("FK__Materia_P__Profe__3C69FB99");
             });
@@ -170,7 +170,7 @@ namespace GestaoCompetencias.Models
                 entity.Property(e => e.TurmaId).HasColumnName("TurmaID");
 
                 entity.HasOne(d => d.Turma)
-                    .WithMany(p => p.Materia)
+                    .WithMany(p => p.Materias)
                     .HasForeignKey(d => d.TurmaId)
                     .HasConstraintName("FK__Materia__TurmaID__32E0915F");
             });
@@ -194,7 +194,7 @@ namespace GestaoCompetencias.Models
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Login)
-                    .WithMany(p => p.Professors)
+                    .WithMany(p => p.Professores)
                     .HasForeignKey(d => d.LoginId)
                     .HasConstraintName("FK__Professor__Login__2C3393D0");
             });
@@ -229,12 +229,12 @@ namespace GestaoCompetencias.Models
                 entity.Property(e => e.TurmaId).HasColumnName("TurmaID");
 
                 entity.HasOne(d => d.Professor)
-                    .WithMany(p => p.TurmaProfessors)
+                    .WithMany(p => p.TurmaProfessores)
                     .HasForeignKey(d => d.ProfessorId)
                     .HasConstraintName("FK__Turma_Pro__Profe__2F10007B");
 
                 entity.HasOne(d => d.Turma)
-                    .WithMany(p => p.TurmaProfessors)
+                    .WithMany(p => p.TurmaProfessores)
                     .HasForeignKey(d => d.TurmaId)
                     .HasConstraintName("FK__Turma_Pro__Turma__300424B4");
             });
