@@ -30,11 +30,11 @@ namespace GestaoCompetencias.Models
             return id;
         }
 
-        public static void delete(Login login)
+        public void delete()
         {            
             using(var context = new DB_Gestao_CompetenciasContext())
             {
-                var logins = context.Logins.FirstOrDefault(i=> i.Id == login.Id);
+                var logins = context.Logins.FirstOrDefault(i=> i.Id == this.Id);
                 context.Logins.Remove(logins);
                 context.SaveChanges();                
             }            
