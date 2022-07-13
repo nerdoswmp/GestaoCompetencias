@@ -13,11 +13,11 @@ namespace GestaoCompetencias.Models
         public int Id { get; set; }
         public string Nome { get; set; } = null!;
         public string Edv { get; set; } = null!;
-        public int? LoginId { get; set; }
-        public int? TurmaId { get; set; }
+        public int LoginId { get; set; }
+        public int TurmaId { get; set; }
 
-        public virtual Login? Login { get; set; }
-        public virtual Turma? Turma { get; set; }
+        public virtual Login Login { get; set; }
+        public virtual Turma Turma { get; set; }
         public virtual ICollection<AprendizCompetencia> AprendizCompetencias { get; set; }
     }
 }

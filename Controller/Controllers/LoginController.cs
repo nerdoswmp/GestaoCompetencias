@@ -38,4 +38,13 @@ public class LoginController
         var login = Login.findId(id);
         return login;
     }
+
+    [HttpPost]
+    [Route("enter")]
+    public object completeLogin([FromBody]Login login)
+    {
+        var user = login.VerifyExistence();
+
+        return user;
+    }
 }
