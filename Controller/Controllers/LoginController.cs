@@ -23,10 +23,10 @@ public class LoginController
     }
 
     [HttpDelete]
-    [Route("delete")]
-    public string deleteLogin([FromBody] Login login)
+    [Route("delete/{id}")]
+    public string deleteLogin(int id)
     {
-        login.delete();
+        Login.delete(id);
         return "Deuboa";
     }
 
