@@ -39,5 +39,18 @@ namespace GestaoCompetencias.Models
                 context.SaveChanges();                
             }            
         }
+
+        public static object findId(int id)
+        {
+            using(var context = new DB_Gestao_CompetenciasContext())
+            {
+                var Login = context.Logins.FirstOrDefault(d => d.Id == id);
+                return new
+                {
+                    Usuario = Login.Usuario,
+                    Senha = Login.Senha
+                };
+            }
+        }
     }
 }
