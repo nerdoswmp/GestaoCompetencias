@@ -41,31 +41,19 @@ namespace GestaoCompetencias.Models
             {
                 entity.ToTable("Aprendiz");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
+                entity.HasKey(e => e.Id);
+                 
                 entity.Property(e => e.Edv)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LoginId).HasColumnName("LoginID");
+                entity.HasOne(e => e.Login);
 
                 entity.Property(e => e.Nome)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TurmaId).HasColumnName("TurmaID");
-
-                entity.HasOne(d => d.Login)
-                    .WithMany(p => p.Aprendizes)
-                    .HasForeignKey(d => d.LoginId)
-                    .HasConstraintName("FK__Aprendiz__LoginI__286302EC");
-
-                entity.HasOne(d => d.Turma)
-                    .WithMany(p => p.Aprendizes)
-                    .HasForeignKey(d => d.TurmaId)
-                    .HasConstraintName("FK__Aprendiz__TurmaI__29572725");
+                entity.HasOne(d => d.Turma);
             });
 
             modelBuilder.Entity<AprendizCompetencia>(entity =>
