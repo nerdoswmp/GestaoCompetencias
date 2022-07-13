@@ -30,13 +30,13 @@ namespace GestaoCompetencias.Models
             return id;
         }
 
-        public void delete()
+        public static void delete(int id)
         {            
             using(var context = new DB_Gestao_CompetenciasContext())
             {
-                var logins = context.Logins.FirstOrDefault(i=> i.Id == this.Id);
-                context.Logins.Remove(logins);
-                context.SaveChanges();                
+                    var logins = context.Logins.FirstOrDefault(i=> i.Id == id);
+                    context.Logins.Remove(logins);
+                    context.SaveChanges();                                 
             }            
         }
 
@@ -50,6 +50,20 @@ namespace GestaoCompetencias.Models
                     Usuario = Login.Usuario,
                     Senha = Login.Senha
                 };
+            }
+        }
+
+        public static List<Login> findAll()
+        {
+            using(var context = new DB_Gestao_CompetenciasContext())
+            {
+                List<Login> listLogin = new List<Login>();
+                var Logins = context.Logins;
+                foreach(var login in Logins)
+                {
+                    listLogin.Add(login);
+                }
+                return listLogin;
             }
         }
     }

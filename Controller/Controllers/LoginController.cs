@@ -23,10 +23,10 @@ public class LoginController
     }
 
     [HttpDelete]
-    [Route("delete")]
-    public string deleteLogin([FromBody] Login login)
+    [Route("delete/{id}")]
+    public string deleteLogin(int id)
     {
-        login.delete();
+        Login.delete(id);
         return "Deuboa";
     }
 
@@ -36,6 +36,14 @@ public class LoginController
     {
         Console.WriteLine(id);
         var login = Login.findId(id);
+        return login;
+    }
+
+    [HttpGet]
+    [Route("get/all")]
+    public List<Login> getAllLogin()
+    {
+        var login = Login.findAll();
         return login;
     }
 }

@@ -12,7 +12,7 @@ namespace GestaoCompetencias.Models
         public int Id { get; set; }
         public string Nome { get; set; } = null!;
         public string Edv { get; set; } = null!;
-        public int? LoginId { get; set; }
+        public int LoginId { get; set; }
         public int? TurmaId { get; set; }
         public virtual Login? Login { get; set; }
         public virtual Turma? Turma { get; set; }
@@ -28,5 +28,21 @@ namespace GestaoCompetencias.Models
             }
             return id;
         }
+
+        public static string delete(int AprendizID){
+            using var db = new DB_Gestao_CompetenciasContext();
+            var aprendiz = db.Aprendizes.FirstOrDefault( q => q.Id == AprendizID);
+            int loginid = aprendiz.LoginId;
+            db.Aprendizes.Remove(aprendiz);
+            db.SaveChanges();
+            Login.delete(loginid);
+            return "boa";
+        }
+
+        // public object Update(){
+        //     using var db = new DB_Gestao_CompetenciasContext();
+        //     var _AprendizDB = db.Aprendizes.FirstOrDefault( q => q.Id == this.Id);
+        //     var _AprendizDB = 
+        // }
     }
 }
