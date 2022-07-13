@@ -32,5 +32,50 @@ namespace GestaoCompetencias.Models
             }
             return id;
         }
+
+        public static void delete(int id)
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {                
+                var materias = context.Materias.Where(i => i.TurmaId == id);
+                foreach(var materia in materias)
+                {
+                    Materia.delete(materia.Id);
+                }
+                context.SaveChanges();
+            }
+            using(var context = new DB_Gestao_CompetenciasContext())
+            {
+                var turmas = context.Turmas.FirstOrDefault(i => i.Id == id);
+                context.Turmas.Remove(turmas);
+                context.SaveChanges();
+            }
+        }
+        public static List<Turma> findAll()
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                List<Turma> listTurma = new List<Turma>();
+                var turmas = context.Turmas;
+                foreach (var turma in turmas)
+                {
+                    listTurma.Add(turma);
+                }
+                return listTurma;
+            }
+        }
+        public static object findId(int id)
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {                
+                var Turma = context.Turmas.FirstOrDefault(t => t.Id == id);
+                return new
+                {
+                    Nome = Turma.Nome,                    
+                    DataDeInicio = Turma.DataDeInicio,
+                    DataDeFim = Turma.DataDeFim,                    
+                };
+            }
+        }
     }
 }
