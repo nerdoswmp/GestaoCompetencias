@@ -38,4 +38,12 @@ public class LoginController
         var login = Login.findId(id);
         return login;
     }
+
+    [HttpGet]
+    [Route("get/all")]
+    public List<Login> getAllLogin()
+    {
+        var login = Login.findAll();
+        return login;
+    }
 }

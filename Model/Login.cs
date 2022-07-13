@@ -52,5 +52,19 @@ namespace GestaoCompetencias.Models
                 };
             }
         }
+
+        public static List<Login> findAll()
+        {
+            using(var context = new DB_Gestao_CompetenciasContext())
+            {
+                List<Login> listLogin = new List<Login>();
+                var Logins = context.Logins;
+                foreach(var login in Logins)
+                {
+                    listLogin.Add(login);
+                }
+                return listLogin;
+            }
+        }
     }
 }
