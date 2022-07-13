@@ -29,4 +29,13 @@ public class LoginController
         Login.delete(login);
         return "Deuboa";
     }
+
+    [HttpGet]
+    [Route("get/{id}")]
+    public object getInformationLogin(int id)
+    {
+        Console.WriteLine(id);
+        var login = Login.findId(id);
+        return login;
+    }
 }
