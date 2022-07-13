@@ -9,15 +9,24 @@ namespace GestaoCompetencias.Models
         {
             AprendizCompetencias = new HashSet<AprendizCompetencia>();
         }
-
         public int Id { get; set; }
         public string Nome { get; set; } = null!;
         public string Edv { get; set; } = null!;
         public int? LoginId { get; set; }
         public int? TurmaId { get; set; }
-
         public virtual Login? Login { get; set; }
         public virtual Turma? Turma { get; set; }
         public virtual ICollection<AprendizCompetencia> AprendizCompetencias { get; set; }
+
+        public int save(){
+            int id = 0;
+            using(var db = new DB_Gestao_CompetenciasContext()){
+                db.Aprendizes.Add(this);
+                db.SaveChanges();
+                id = this.Id;
+
+            }
+            return id;
+        }
     }
 }
