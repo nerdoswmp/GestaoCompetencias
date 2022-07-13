@@ -31,7 +31,7 @@ namespace GestaoCompetencias.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=JVLPC0587;Database=DB_Gestao_Competencias;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=JVLPC0555\\SQLExpress;Database=DB_Gestao_Competencias;Trusted_Connection=True;");
             }
         }
 
@@ -42,11 +42,7 @@ namespace GestaoCompetencias.Models
                 entity.ToTable("Aprendiz");
 
                 entity.HasKey(e => e.Id);
-<<<<<<< HEAD:GestaoCompetencias/Models/DB_Gestao_CompetenciasContext.cs
                  
-=======
-
->>>>>>> cf6ddb41d454c29989ba70bd54c8fe9fcd829c36:Model/DB_Gestao_CompetenciasContext.cs
                 entity.Property(e => e.Edv)
                     .HasMaxLength(10)
                     .IsUnicode(false);
@@ -66,19 +62,9 @@ namespace GestaoCompetencias.Models
 
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.AprendizId).HasColumnName("AprendizID");
+                entity.HasOne(d => d.Aprendiz);
 
-                entity.Property(e => e.CompetenciasId).HasColumnName("CompetenciasID");
-
-                entity.HasOne(d => d.Aprendiz)
-                    .WithMany(p => p.AprendizCompetencias)
-                    .HasForeignKey(d => d.AprendizId)
-                    .HasConstraintName("FK__Aprendiz___Apren__38996AB5");
-
-                entity.HasOne(d => d.Competencias)
-                    .WithMany(p => p.AprendizCompetencias)
-                    .HasForeignKey(d => d.CompetenciasId)
-                    .HasConstraintName("FK__Aprendiz___Compe__398D8EEE");
+                entity.HasOne(d => d.Competencias);
             });
 
             modelBuilder.Entity<Competencia>(entity =>
@@ -89,12 +75,7 @@ namespace GestaoCompetencias.Models
                     .HasMaxLength(280)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MateriaId).HasColumnName("MateriaID");
-
-                entity.HasOne(d => d.Materia)
-                    .WithMany(p => p.Competencia)
-                    .HasForeignKey(d => d.MateriaId)
-                    .HasConstraintName("FK__Competenc__Mater__35BCFE0A");
+                entity.HasOne(d => d.Materia);
             });
 
             modelBuilder.Entity<Login>(entity =>
@@ -118,19 +99,9 @@ namespace GestaoCompetencias.Models
 
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.MateriaId).HasColumnName("MateriaID");
+                entity.HasOne(d => d.Materia);
 
-                entity.Property(e => e.ProfessorId).HasColumnName("ProfessorID");
-
-                entity.HasOne(d => d.Materia)
-                    .WithMany(p => p.MateriaProfessores)
-                    .HasForeignKey(d => d.MateriaId)
-                    .HasConstraintName("FK__Materia_P__Mater__3D5E1FD2");
-
-                entity.HasOne(d => d.Professor)
-                    .WithMany(p => p.MateriaProfessores)
-                    .HasForeignKey(d => d.ProfessorId)
-                    .HasConstraintName("FK__Materia_P__Profe__3C69FB99");
+                entity.HasOne(d => d.Professor);
             });
 
             modelBuilder.Entity<Materia>(entity =>
@@ -149,8 +120,6 @@ namespace GestaoCompetencias.Models
                     .HasMaxLength(100)
                     .IsUnicode(false).IsRequired();
 
-                entity.Property(e => e.TurmaId).HasColumnName("TurmaID");
-
                 entity.HasOne(d => d.Turma)
                     .WithMany(p => p.Materias);
             });
@@ -165,16 +134,11 @@ namespace GestaoCompetencias.Models
                     .HasMaxLength(11)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LoginId).HasColumnName("LoginID");
-
                 entity.Property(e => e.Nome)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Login)
-                    .WithMany(p => p.Professores)
-                    .HasForeignKey(d => d.LoginId)
-                    .HasConstraintName("FK__Professor__Login__2C3393D0");
+                entity.HasOne(d => d.Login);
             });
 
             modelBuilder.Entity<Turma>(entity =>
@@ -198,19 +162,11 @@ namespace GestaoCompetencias.Models
 
                 entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.ProfessorId).HasColumnName("ProfessorID");
-
-                entity.Property(e => e.TurmaId).HasColumnName("TurmaID");
-
                 entity.HasOne(d => d.Professor)
-                    .WithMany(p => p.TurmaProfessores)
-                    .HasForeignKey(d => d.ProfessorId)
-                    .HasConstraintName("FK__Turma_Pro__Profe__2F10007B");
+                    .WithMany(p => p.TurmaProfessores);
 
                 entity.HasOne(d => d.Turma)
-                    .WithMany(p => p.TurmaProfessores)
-                    .HasForeignKey(d => d.TurmaId)
-                    .HasConstraintName("FK__Turma_Pro__Turma__300424B4");
+                    .WithMany(p => p.TurmaProfessores);
             });
 
             OnModelCreatingPartial(modelBuilder);
