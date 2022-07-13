@@ -4,3 +4,5 @@ using GestaoCompetencias.Models;
 using var context = new DB_Gestao_CompetenciasContext();
 
 context.Database.EnsureCreated();
+
+

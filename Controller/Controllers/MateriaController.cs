@@ -21,5 +21,29 @@ public class MateriaController
         var id = materia.save();
         return new { id = id };
     }
-    
+
+    [HttpDelete]
+    [Route("delete/{id}")]
+    public string deleteMateria(int id)
+    {
+        Materia.delete(id);
+        return "Deuboa";
+    }
+
+    [HttpGet]
+    [Route("get/{id}")]
+    public object getInformationMateria(int id)
+    {
+        Console.WriteLine(id);
+        var materia = Materia.findId(id);
+        return materia;
+    }
+
+    [HttpGet]
+    [Route("get/all")]
+    public List<Materia> getAllMateria()
+    {
+        var materia = Materia.findAll();
+        return materia;
+    }
 }
