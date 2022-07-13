@@ -39,10 +39,12 @@ namespace GestaoCompetencias.Models
             return "boa";
         }
 
-        // public object Update(){
-        //     using var db = new DB_Gestao_CompetenciasContext();
-        //     var _AprendizDB = db.Aprendizes.FirstOrDefault( q => q.Id == this.Id);
-        //     var _AprendizDB = 
-        // }
+        public static Aprendiz GetAprendiz(int AprendizID){
+            using var db = new DB_Gestao_CompetenciasContext();
+
+            var aprendiz = db.Aprendizes.FirstOrDefault(q => q.Id == AprendizID);
+            return aprendiz;
+        }
+
     }
 }

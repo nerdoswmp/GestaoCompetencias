@@ -27,4 +27,11 @@ public class AprendizController{
         var teste =  Aprendiz.delete(AprendizID);
         return "Boa";
     }
+
+    [HttpGet]
+    [Route("GetAprendiz/{AprendizID}")]
+    public Aprendiz GetAprendiz( int AprendizID){
+        var response = Aprendiz.GetAprendiz(AprendizID);
+        return response;
+    }
 }
