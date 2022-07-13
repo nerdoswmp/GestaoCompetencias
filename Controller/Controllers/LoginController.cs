@@ -26,7 +26,7 @@ public class LoginController
     [Route("delete")]
     public string deleteLogin([FromBody] Login login)
     {
-        Login.delete(login);
+        login.delete();
         return "Deuboa";
     }
 
