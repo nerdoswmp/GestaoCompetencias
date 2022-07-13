@@ -31,7 +31,7 @@ namespace GestaoCompetencias.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=JVLPC0555\\SQLExpress;Database=DB_Gestao_Competencias;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=JVLPC0587;Database=DB_Gestao_Competencias;Trusted_Connection=True;");
             }
         }
 
@@ -42,7 +42,11 @@ namespace GestaoCompetencias.Models
                 entity.ToTable("Aprendiz");
 
                 entity.HasKey(e => e.Id);
+<<<<<<< HEAD:GestaoCompetencias/Models/DB_Gestao_CompetenciasContext.cs
                  
+=======
+
+>>>>>>> cf6ddb41d454c29989ba70bd54c8fe9fcd829c36:Model/DB_Gestao_CompetenciasContext.cs
                 entity.Property(e => e.Edv)
                     .HasMaxLength(10)
                     .IsUnicode(false);
@@ -60,9 +64,7 @@ namespace GestaoCompetencias.Models
             {
                 entity.ToTable("Aprendiz_Competencias");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.AprendizId).HasColumnName("AprendizID");
 
@@ -81,9 +83,7 @@ namespace GestaoCompetencias.Models
 
             modelBuilder.Entity<Competencia>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Descricao)
                     .HasMaxLength(280)
@@ -101,9 +101,7 @@ namespace GestaoCompetencias.Models
             {
                 entity.ToTable("Login");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Senha)
                     .HasMaxLength(100)
@@ -118,9 +116,7 @@ namespace GestaoCompetencias.Models
             {
                 entity.ToTable("Materia_Professor");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.MateriaId).HasColumnName("MateriaID");
 
@@ -139,37 +135,31 @@ namespace GestaoCompetencias.Models
 
             modelBuilder.Entity<Materia>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.DataDeFim).HasColumnType("date");
+                entity.Property(e => e.DataDeFim).HasColumnType("date").IsRequired();
 
-                entity.Property(e => e.DataDeInicio).HasColumnType("date");
+                entity.Property(e => e.DataDeInicio).HasColumnType("date").IsRequired();
 
                 entity.Property(e => e.Descricao)
                     .HasMaxLength(280)
-                    .IsUnicode(false);
+                    .IsUnicode(false).IsRequired();
 
                 entity.Property(e => e.Nome)
                     .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .IsUnicode(false).IsRequired();
 
                 entity.Property(e => e.TurmaId).HasColumnName("TurmaID");
 
                 entity.HasOne(d => d.Turma)
-                    .WithMany(p => p.Materias)
-                    .HasForeignKey(d => d.TurmaId)
-                    .HasConstraintName("FK__Materia__TurmaID__32E0915F");
+                    .WithMany(p => p.Materias);
             });
 
             modelBuilder.Entity<Professor>(entity =>
             {
                 entity.ToTable("Professor");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Identificador)
                     .HasMaxLength(11)
@@ -191,9 +181,7 @@ namespace GestaoCompetencias.Models
             {
                 entity.ToTable("Turma");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.DataDeFim).HasColumnType("date");
 
@@ -208,9 +196,7 @@ namespace GestaoCompetencias.Models
             {
                 entity.ToTable("Turma_Professor");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.ProfessorId).HasColumnName("ProfessorID");
 

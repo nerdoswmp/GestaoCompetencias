@@ -3,7 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoCompetencias", "GestaoCompetencias\GestaoCompetencias.csproj", "{C93BAC77-8140-4D5B-AC8D-9838EACA07A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoCompetencias", "GestaoCompetencias\GestaoCompetencias.csproj", "{C93BAC77-8140-4D5B-AC8D-9838EACA07A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D6503EC-97BC-4E4D-A039-EFFFEEF1957B} = {5D6503EC-97BC-4E4D-A039-EFFFEEF1957B}
+		{61C453D7-6084-4089-88ED-6AC2CDE39562} = {61C453D7-6084-4089-88ED-6AC2CDE39562}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{61C453D7-6084-4089-88ED-6AC2CDE39562}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{5D6503EC-97BC-4E4D-A039-EFFFEEF1957B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61C453D7-6084-4089-88ED-6AC2CDE39562} = {61C453D7-6084-4089-88ED-6AC2CDE39562}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,14 @@ Global
 		{C93BAC77-8140-4D5B-AC8D-9838EACA07A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C93BAC77-8140-4D5B-AC8D-9838EACA07A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C93BAC77-8140-4D5B-AC8D-9838EACA07A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C453D7-6084-4089-88ED-6AC2CDE39562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C453D7-6084-4089-88ED-6AC2CDE39562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C453D7-6084-4089-88ED-6AC2CDE39562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C453D7-6084-4089-88ED-6AC2CDE39562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6503EC-97BC-4E4D-A039-EFFFEEF1957B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6503EC-97BC-4E4D-A039-EFFFEEF1957B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6503EC-97BC-4E4D-A039-EFFFEEF1957B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6503EC-97BC-4E4D-A039-EFFFEEF1957B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
