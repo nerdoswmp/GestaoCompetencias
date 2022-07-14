@@ -17,9 +17,16 @@ namespace GestaoCompetencias.Models
         public DateTime DataDeInicio { get; set; }
         public DateTime DataDeFim { get; set; }
 
-        public virtual ICollection<Aprendiz> Aprendizes { get; set; }
-        public virtual ICollection<Materia> Materias { get; set; }
-        public virtual ICollection<TurmaProfessor> TurmaProfessores { get; set; }
+        public virtual ICollection<Aprendiz>? Aprendizes { get; set; }
+        public virtual ICollection<Materia>? Materias { get; set; }
+        public virtual ICollection<TurmaProfessor>? TurmaProfessores { get; set; }
+
+        public Turma(string nome, DateTime inicio, DateTime fim)
+        {
+            Nome = nome;
+            DataDeInicio = inicio;
+            DataDeFim = fim;
+        }
 
         public int save()
         {

@@ -15,10 +15,10 @@ public class ProfessorController
 {
     [HttpPost]
     [Route("register")]
-    public string registerProfessor([FromBody] Professor professor)
+    public int registerProfessor([FromBody] Professor professor)
     {
         var id = professor.save();
-        return "Deuboa";
+        return id;
     }
 
     [HttpDelete]
