@@ -11,6 +11,14 @@ namespace GestaoCompetencias.Models
             TurmaProfessores = new HashSet<TurmaProfessor>();
         }
 
+        public Professor(string nome,string identificador,int loginId, bool interno, bool adm) {
+            this.Nome = nome;
+            this.Identificador = identificador;
+            this.LoginId = loginId;
+            this.Interno = interno;
+            this.Adm = adm;
+        }
+
         public int Id { get; set; }
         public string Nome { get; set; } = null!;
         public string Identificador { get; set; } = null!;
@@ -18,9 +26,9 @@ namespace GestaoCompetencias.Models
         public bool Interno { get; set; }
         public bool Adm { get; set; }
 
-        public virtual Login Login { get; set; }
-        public virtual ICollection<MateriaProfessor> MateriaProfessores { get; set; }
-        public virtual ICollection<TurmaProfessor> TurmaProfessores { get; set; }
+        public virtual Login? Login { get; set; }
+        public virtual ICollection<MateriaProfessor>? MateriaProfessores { get; set; }
+        public virtual ICollection<TurmaProfessor>? TurmaProfessores { get; set; }
 
 
         public int save()
