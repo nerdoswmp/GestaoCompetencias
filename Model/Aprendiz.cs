@@ -15,9 +15,17 @@ namespace GestaoCompetencias.Models
         public int LoginId { get; set; }
         public int TurmaId { get; set; }
 
-        public virtual Login Login { get; set; }
-        public virtual Turma Turma { get; set; }
-        public virtual ICollection<AprendizCompetencia> AprendizCompetencias { get; set; }
+        public virtual Login? Login { get; set; }
+        public virtual Turma? Turma { get; set; }
+        public virtual ICollection<AprendizCompetencia>? AprendizCompetencias { get; set; }
+
+        public Aprendiz(string nome, string edv, int loginid, int turmaid)
+        {
+            Nome = nome;
+            Edv = edv;
+            LoginId = loginid;
+            TurmaId = turmaid;
+        }
 
         public int save(){
             int id = 0;
