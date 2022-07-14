@@ -25,9 +25,19 @@ namespace GestaoCompetencias.Models
             int id = 0;
             using (var context = new DB_Gestao_CompetenciasContext())
             {
-                context.Logins.Add(this);
-                context.SaveChanges();
-                id = this.Id;
+                bool alreadyexists = context.Logins.Any(l => l.Usuario == this.Usuario);
+
+                if (!alreadyexists)
+                {
+                    context.Logins.Add(this);
+                    context.SaveChanges();
+                    id = this.Id;
+                }
+                else
+                {
+                    return 0;
+                }
+
             }
             return id;
         }
@@ -118,6 +128,42 @@ namespace GestaoCompetencias.Models
                 else
                 {
                     return new Exception("Login não existente");
+                }
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+
+
+        }
+
+        public static object UpdatePassword(LoginDTO log)
+        {
+            using var context = new DB_Gestao_CompetenciasContext();
+
+            try
+            {
+                var login = context.Logins.Where(l => l.Usuario == log.Usuario).FirstOrDefault();
+
+                if (login != null)
+                {
+                    login.Senha = log.Senha;
+
+                    try
+                    {
+                        context.Update(login);
+                        context.SaveChanges();
+                        return log;
+                    }
+                    catch (Exception e)
+                    {
+                        return e;
+                    }
+                }
+                else
+                {
+                    return new NullReferenceException();
                 }
             }
             catch (Exception e)

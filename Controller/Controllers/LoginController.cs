@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GestaoCompetencias.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using DTO;
 
 namespace Controller.Controllers;
 
@@ -19,6 +20,11 @@ public class LoginController
     public string registerLogin([FromBody] Login login)
     {
         var id = login.save();
+
+        if(id == 0)
+        {
+            return "Deuruim";
+        }
         return "Deuboa";
     }
 
@@ -52,6 +58,15 @@ public class LoginController
     public object completeLogin([FromBody]Login login)
     {
         var user = login.VerifyExistence();
+
+        return user;
+    }
+
+    [HttpPut]
+    [Route("updatepass")]
+    public object changePassword([FromBody] LoginDTO login)
+    {
+        var user = Login.UpdatePassword(login);
 
         return user;
     }
