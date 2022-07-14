@@ -32,7 +32,7 @@ namespace GestaoCompetencias.Models
             if (!optionsBuilder.IsConfigured)
             {
                 var MachineName = Environment.MachineName;
-                optionsBuilder.UseSqlServer($"Server={MachineName};Database=DB_Gestao_Competencias;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer($"Server={MachineName}\\SQLEXPRESS;Database=DB_Gestao_Competencias;Trusted_Connection=True;");
             }
         }
 
