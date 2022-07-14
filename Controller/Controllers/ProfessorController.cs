@@ -20,4 +20,30 @@ public class ProfessorController
         var id = professor.save();
         return "Deuboa";
     }
+
+    [HttpDelete]
+    [Route("delete/{id}")]
+    public string deleteProfessor(int id)
+    {
+        Professor.delete(id);
+        return "Deuboa";
+    }
+
+    [HttpGet]
+    [Route("get/{id}")]
+    public object getInformationProfessor(int id)
+    {
+        Console.WriteLine(id);
+        var professor = Professor.findId(id);
+        return professor;
+    }
+
+    [HttpGet]
+    [Route("get/all")]
+    public List<Professor> getAllProfessor()
+    {
+        var professor = Professor.findAll();
+        return professor;
+    }
+
 }

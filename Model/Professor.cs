@@ -35,5 +35,43 @@ namespace GestaoCompetencias.Models
             return id;
         }
 
+        public static void delete(int id)
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                var professores = context.Professores.FirstOrDefault(i => i.Id == id);
+                context.Professores.Remove(professores);
+                context.SaveChanges();
+            }
+        }
+
+        public static object findId(int id)
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                var Professor = context.Professores.FirstOrDefault(d => d.Id == id);
+                return new
+                {
+                    Nome = Professor.Nome,
+                    Identificador = Professor.Identificador,
+                    Interno = Professor.Interno,
+                    Adm = Professor.Adm
+                };
+            }
+        }
+
+        public static List<Professor> findAll()
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                List<Professor> listProfessor = new List<Professor>();
+                var Professores = context.Professores;
+                foreach (var professor in Professores)
+                {
+                    listProfessor.Add(professor);
+                }
+                return listProfessor;
+            }
+        }
     }
 }
