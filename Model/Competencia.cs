@@ -16,5 +16,12 @@ namespace GestaoCompetencias.Models
 
         public virtual Materia? Materia { get; set; }
         public virtual ICollection<AprendizCompetencia> AprendizCompetencias { get; set; }
+
+        public void save(){
+            using var db =  new DB_Gestao_CompetenciasContext();
+            db.Competencias.Add(this);
+            db.SaveChanges();
+            return;
+        }
     }
 }
