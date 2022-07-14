@@ -20,6 +20,12 @@ namespace GestaoCompetencias.Models
         public virtual ICollection<Aprendiz> Aprendizes { get; set; }
         public virtual ICollection<Professor> Professores { get; set; }
 
+        public Login(string usuario, string senha)
+        {
+            Usuario = usuario;
+            Senha = senha;
+        }
+
         public int save()
         {
             int id = 0;

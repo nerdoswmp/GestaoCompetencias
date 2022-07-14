@@ -15,9 +15,9 @@ public class AprendizController{
 
     [HttpPost]
     [Route("register")]
-    public string RegisterAprendiz([FromBody] Aprendiz _aprendiz){
+    public int RegisterAprendiz([FromBody] Aprendiz _aprendiz){
        var item =  _aprendiz.save();
-       return "Deu Boas";
+       return item;
     }
 
     [HttpDelete]

@@ -17,15 +17,15 @@ public class LoginController
 {
     [HttpPost]
     [Route("register")]
-    public string registerLogin([FromBody] Login login)
+    public int registerLogin([FromBody] Login login)
     {
         var id = login.save();
 
         if(id == 0)
         {
-            return "Deuruim";
+            return -1;
         }
-        return "Deuboa";
+        return id;
     }
 
     [HttpDelete]
