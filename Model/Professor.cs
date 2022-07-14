@@ -11,6 +11,14 @@ namespace GestaoCompetencias.Models
             TurmaProfessores = new HashSet<TurmaProfessor>();
         }
 
+        public Professor(string nome,string identificador,int loginId, bool interno, bool adm) {
+            this.Nome = nome;
+            this.Identificador = identificador;
+            this.LoginId = loginId;
+            this.Interno = interno;
+            this.Adm = adm;
+        }
+
         public int Id { get; set; }
         public string Nome { get; set; } = null!;
         public string Identificador { get; set; } = null!;
@@ -18,9 +26,9 @@ namespace GestaoCompetencias.Models
         public bool Interno { get; set; }
         public bool Adm { get; set; }
 
-        public virtual Login Login { get; set; }
-        public virtual ICollection<MateriaProfessor> MateriaProfessores { get; set; }
-        public virtual ICollection<TurmaProfessor> TurmaProfessores { get; set; }
+        public virtual Login? Login { get; set; }
+        public virtual ICollection<MateriaProfessor>? MateriaProfessores { get; set; }
+        public virtual ICollection<TurmaProfessor>? TurmaProfessores { get; set; }
 
 
         public int save()
@@ -35,5 +43,43 @@ namespace GestaoCompetencias.Models
             return id;
         }
 
+        public static void delete(int id)
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                var professores = context.Professores.FirstOrDefault(i => i.Id == id);
+                context.Professores.Remove(professores);
+                context.SaveChanges();
+            }
+        }
+
+        public static object findId(int id)
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                var Professor = context.Professores.FirstOrDefault(d => d.Id == id);
+                return new
+                {
+                    Nome = Professor.Nome,
+                    Identificador = Professor.Identificador,
+                    Interno = Professor.Interno,
+                    Adm = Professor.Adm
+                };
+            }
+        }
+
+        public static List<Professor> findAll()
+        {
+            using (var context = new DB_Gestao_CompetenciasContext())
+            {
+                List<Professor> listProfessor = new List<Professor>();
+                var Professores = context.Professores;
+                foreach (var professor in Professores)
+                {
+                    listProfessor.Add(professor);
+                }
+                return listProfessor;
+            }
+        }
     }
 }
