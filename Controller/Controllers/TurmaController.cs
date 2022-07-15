@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GestaoCompetencias.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using DTO;
 
 namespace GestaoCompetencias.Controller.Controllers;
 
@@ -15,10 +16,17 @@ public class TurmaController
 {
     [HttpPost]
     [Route("register")]
-    public object registerTurma([FromBody] Turma turma)
+    public object registerTurma([FromBody] TurmaDTO turma)
     {
-        var id = turma.save();
-        return new { id = id};
+        var Turma = new Turma(turma.Nome, turma.DataDeInicio, turma.DataDeFim);
+        var id = Turma.save();
+        var TurmaProfessor = new TurmaProfessor()
+        {
+            ProfessorId = turma.ProfessorId, 
+            TurmaId = id
+        };
+        var idtp = TurmaProfessor.save();
+        return new { id = idtp};
     }
 
     [HttpDelete]
