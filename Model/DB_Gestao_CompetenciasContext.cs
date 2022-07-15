@@ -169,7 +169,7 @@ namespace GestaoCompetencias.Models
                 entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Identificador)
-                    .HasMaxLength(11)
+                    .HasMaxLength(12)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LoginId).HasColumnName("LoginID");

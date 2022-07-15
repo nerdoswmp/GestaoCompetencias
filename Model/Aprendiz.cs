@@ -33,7 +33,6 @@ namespace GestaoCompetencias.Models
                 db.Aprendizes.Add(this);
                 db.SaveChanges();
                 id = this.Id;
-
             }
             return id;
         }

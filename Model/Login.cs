@@ -128,17 +128,17 @@ namespace GestaoCompetencias.Models
                     }
                     else
                     {
-                        return new Exception("Login não existente");
+                        throw new Exception("Login não existente");
                     }
                 }
                 else
                 {
-                    return new Exception("Login não existente");
+                    throw new Exception("Login não existente");
                 }
             }
-            catch (Exception e)
+            catch
             {
-                return e;
+                throw new Exception("Login não existente");
             }
 
 
@@ -162,19 +162,19 @@ namespace GestaoCompetencias.Models
                         context.SaveChanges();
                         return log;
                     }
-                    catch (Exception e)
+                    catch
                     {
-                        return e;
+                        throw new Exception();
                     }
                 }
                 else
                 {
-                    return new NullReferenceException();
+                    throw new NullReferenceException();
                 }
             }
-            catch (Exception e)
+            catch
             {
-                return e;
+                throw new Exception();
             }
 
 
