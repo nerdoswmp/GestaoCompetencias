@@ -6,5 +6,6 @@
         public string Nome { get; set; }
         public DateTime DataDeInicio { get; set; }
         public DateTime DataDeFim { get; set; }
+        public int? ProfessorId { get; set; } 
     }
 }

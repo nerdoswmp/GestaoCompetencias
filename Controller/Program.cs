@@ -9,7 +9,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ! Ignora depêndencias circulares
+builder.Services.AddCors(p=>p.AddPolicy("corsapp", builder =>{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
+// ! Ignora depï¿½ndencias circulares
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 

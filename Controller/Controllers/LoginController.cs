@@ -58,7 +58,7 @@ public class LoginController
     public object completeLogin([FromBody]Login login)
     {
         var user = login.VerifyExistence();
-
+        // ! tem q verificar no front isso ae
         return user;
     }
 

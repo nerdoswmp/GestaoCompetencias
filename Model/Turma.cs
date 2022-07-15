@@ -33,9 +33,19 @@ namespace GestaoCompetencias.Models
             int id = 0;
             using (var context = new DB_Gestao_CompetenciasContext())
             {
-                context.Turmas.Add(this);
-                context.SaveChanges();
-                id = this.Id;
+
+                var turmaexists = context.Turmas.Where(t => t.Nome == this.Nome).FirstOrDefault();
+
+                if (turmaexists == null)
+                {
+                    context.Turmas.Add(this);
+                    context.SaveChanges();
+                    id = this.Id;
+                }
+                else
+                {
+                    id = turmaexists.Id;
+                }
             }
             return id;
         }
