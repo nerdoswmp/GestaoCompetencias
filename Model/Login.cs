@@ -107,7 +107,8 @@ namespace GestaoCompetencias.Models
                             Identificador = teacher.Identificador,
                             LoginId = teacher.Login.Id,
                             Interno = teacher.Interno,
-                            Adm = teacher.Adm
+                            Adm = teacher.Adm,
+                            State = false
                         };
                     }
                     else if (student != null && teacher == null)
@@ -118,12 +119,13 @@ namespace GestaoCompetencias.Models
                             Nome = student.Nome,
                             EDV = student.Edv,
                             LoginId = student.Login.Id,
-                            turmaDTO = new TurmaDTO(){
+                            turmaDTO = new TurmaDTO() {
                                 Id = student.Turma.Id,
                                 Nome = student.Turma.Nome,
                                 DataDeInicio = student.Turma.DataDeInicio,
                                 DataDeFim = student.Turma.DataDeFim
-                            }
+                            },
+                            State = true
                         };
                     }
                     else

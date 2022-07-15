@@ -16,6 +16,7 @@ public class AprendizController{
     [HttpPost]
     [Route("register")]
     public int RegisterAprendiz([FromBody] Aprendiz _aprendiz){
+
        var item =  _aprendiz.save();
        return item;
     }

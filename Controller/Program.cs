@@ -17,6 +17,12 @@ builder.Services.AddCors(p=>p.AddPolicy("corsapp", builder =>{
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
