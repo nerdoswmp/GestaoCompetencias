@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Cors.pt-br" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors.pt-br" Version="5.2.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 
   </ItemGroup>
