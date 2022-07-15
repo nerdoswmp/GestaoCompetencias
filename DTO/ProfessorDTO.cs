@@ -8,5 +8,6 @@
         public int LoginId { get; set; }
         public bool Interno { get; set; }
         public bool Adm { get; set; }
+        public bool State { get; set; }
     }
 }

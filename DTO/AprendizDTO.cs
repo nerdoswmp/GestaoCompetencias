@@ -7,5 +7,6 @@
         public string EDV { get; set; }
         public int LoginId { get; set; }
         public TurmaDTO turmaDTO { get; set; }
+        public bool State { get; set; }
     }
 }
