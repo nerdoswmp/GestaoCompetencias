@@ -46,4 +46,11 @@ public class MateriaController
         var materia = Materia.findAll();
         return materia;
     }
+
+    [HttpGet]
+    [Route("get/byturma/{_TurmaID}")]
+    public List<Materia> GetbyTurma(int _TurmaID){
+        var response =  Materia.GetByTurma(_TurmaID);
+        return response;
+    }
 }

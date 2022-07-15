@@ -86,6 +86,13 @@ namespace GestaoCompetencias.Models
                 };
             }
         }
+
+        public  static List<Materia>  GetByTurma(int _TurmaID){
+
+            using var db =  new DB_Gestao_CompetenciasContext();
+            var response =  db.Materias.Where(q => q.TurmaId == _TurmaID).ToList();
+            return response;
+        }
     }
 
 }
